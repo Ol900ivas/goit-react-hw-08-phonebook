@@ -5,7 +5,7 @@ import { RxCross2 } from 'react-icons/rx';
 
 import { Button } from './ContactItem.styled';
 
-export const ContactItem = ({ id, name, number }) => {
+const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(deleteContact(id));
@@ -22,6 +22,8 @@ export const ContactItem = ({ id, name, number }) => {
     </>
   );
 };
+
+export default ContactItem;
 
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,

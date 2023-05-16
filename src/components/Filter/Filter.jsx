@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Label, Input } from './Filter.styled';
 import { changeFilter } from 'redux/filter.js/filterSlice';
 
-export const Filter = () => {
+const Filter = () => {
   const { filter } = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
@@ -20,3 +20,5 @@ export const Filter = () => {
     </Label>
   );
 };
+
+export default Filter;

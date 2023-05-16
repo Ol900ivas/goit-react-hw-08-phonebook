@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { ContactItem } from '../ContactItem/ContactItem';
+import ContactItem from '../ContactItem/ContactItem';
 import { Ul, Li } from './Contacts.styled';
 
-export const Contacts = () => {
+const Contacts = () => {
   const { items } = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
   console.log(typeof items);
@@ -33,3 +33,5 @@ export const Contacts = () => {
     </Ul>
   );
 };
+
+export default Contacts;

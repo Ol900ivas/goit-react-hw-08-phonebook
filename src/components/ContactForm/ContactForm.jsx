@@ -4,7 +4,7 @@ import { addContact } from 'redux/contacts/contactsOperations';
 import { useState } from 'react';
 import { InputWrap, Label, Input, FormBtn } from './ContactForm.styled';
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -87,3 +87,5 @@ export const ContactForm = () => {
     </form>
   );
 };
+
+export default ContactForm;
