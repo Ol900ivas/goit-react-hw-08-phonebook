@@ -6,10 +6,11 @@ import SharedLayout from './SharedLayout/SharedLayout';
 // import Filter from './Filter/Filter';
 // import Contacts from './Contacts/Contacts';
 // import { TitleH1, TitleH2 } from './Wrap/Wrap.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
-import { selectError, selectIsLoading } from 'redux/contacts/contactsSelectors';
+// import { selectError, selectIsLoading } from 'redux/contacts/contactsSelectors';
 import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('../pages/Home'));
