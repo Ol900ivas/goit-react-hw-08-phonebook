@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/415.67474108.chunk.js","mappings":"2JAIA,UAJa,WACX,OAAO,gDACR,C","sources":["pages/Home.jsx"],"sourcesContent":["const Home = () => {\n  return <h1>Welcome to our page!</h1>;\n};\n\nexport default Home;\n"],"names":[],"sourceRoot":""}
