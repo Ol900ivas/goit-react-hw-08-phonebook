@@ -11,7 +11,11 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
 // import { selectError, selectIsLoading } from 'redux/contacts/contactsSelectors';
-import { Toaster } from 'react-hot-toast';
+// import { Toaster } from 'react-hot-toast';
+import { useAuth } from 'redux/auth/authSelectors';
+import Loader from 'components/Loader/Loader';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { PrivateRoute } from 'components/PrivateRoute';
 // import RegisterPage from 'pages/RegisterPage';
 // import LoginPage from 'pages/LoginPage';
 
@@ -23,6 +27,7 @@ const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
   // const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
 
@@ -30,18 +35,41 @@ export const App = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="contacts" element={<ContactsPage />} />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-      <Toaster
+      {/* <Toaster
         toastOptions={{
           style: {
             border: '2px solid #72b372',
@@ -49,7 +77,7 @@ export const App = () => {
             marginTop: '30px',
           },
         }}
-      />
+      /> */}
     </>
 
     // <>
