@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import { persistor, store } from './redux/store';
 import { store } from './redux/store';
 
-import { App } from 'components/App';
+import { App } from 'App';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

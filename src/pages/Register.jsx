@@ -7,13 +7,13 @@ import {
   IconButton,
   // Input,
   InputAdornment,
-  InputLabel,
+  // InputLabel,
   OutlinedInput,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
-import { signUp } from 'components/services/auth';
+import { signUp } from 'services/auth';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -59,6 +59,7 @@ const Register = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Register form</h1>
+
       <Box
         component="form"
         sx={{
@@ -67,27 +68,28 @@ const Register = () => {
         noValidate
         autoComplete="off"
       >
-        <TextField
-          // id="outlined-basic"
-          label="Username"
-          name="name"
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-basic"
-          label="Email"
-          name="email"
-          onChange={handleChange}
-          variant="outlined"
-        />
-
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
+          <TextField
+            id="name"
+            label="Username"
+            name="name"
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <TextField
+            id="email"
+            label="Email"
+            name="email"
+            onChange={handleChange}
+            variant="outlined"
+          />
+
+          {/* <InputLabel htmlFor="outlined-adornment-password">
             Password
-          </InputLabel>
+          </InputLabel> */}
           <OutlinedInput
             id="outlined-adornment-password"
+            label="Password"
             name="password"
             onChange={handleChange}
             type={showPassword ? 'text' : 'password'}
@@ -103,7 +105,6 @@ const Register = () => {
                 </IconButton>
               </InputAdornment>
             }
-            label="Password"
           />
         </FormControl>
         <div>

@@ -9,6 +9,7 @@ export const Button = styled.button`
   width: 30px;
   align-items: center;
   transition: transform 300ms ease-in-out;
-&:hover {
+  &:hover {
     transform: scale(1.2);
+  }
 `;

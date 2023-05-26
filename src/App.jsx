@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './SharedLayout/SharedLayout';
+import SharedLayout from './components/SharedLayout/SharedLayout';
 // import Wrap from './Wrap/Wrap';
 // import ContactForm from './ContactForm/ContactForm';
 // import Filter from './Filter/Filter';
@@ -12,12 +12,14 @@ import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
 // import { selectError, selectIsLoading } from 'redux/contacts/contactsSelectors';
 import { Toaster } from 'react-hot-toast';
+// import RegisterPage from 'pages/RegisterPage';
+// import LoginPage from 'pages/LoginPage';
 
-const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
-const ContactsPage = lazy(() => import('../pages/ContactsPage'));
-const NotFound = lazy(() => import('./NotFound/NotFound'));
+const Home = lazy(() => import('./pages/Home'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,8 +35,8 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route path="contacts" element={<ContactsPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
