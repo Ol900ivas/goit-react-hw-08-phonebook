@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-// import { signUp } from 'services/auth';
-import { Form, FormTitle } from './RegisterForm.styled';
 import {
   FormBtn,
   Input,
   InputWrap,
+  Label,
 } from 'components/ContactForm/ContactForm.styled';
-// import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { signUp } from 'redux/auth/authOperations';
+import Wrap from 'components/Wrap/Wrap';
+import { TitleH1 } from 'components/Wrap/Wrap.styled';
+import { nanoid } from '@reduxjs/toolkit';
+import { FormLink } from './RegisterForm.styled';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -19,6 +20,10 @@ const RegisterForm = () => {
   //   const { isAuth } = useSelector(state => state.isAuth);
   //   console.log(isAuth);
   const dispatch = useDispatch();
+
+  const nameInputId = nanoid();
+  const emailInputId = nanoid();
+  const passwordInputId = nanoid();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -49,59 +54,56 @@ const RegisterForm = () => {
       })
     );
     form.reset();
-    // console.log(data);
-    // if (!error) toast.success('created successfully');
-    // else toast.error(error.response.data.message);
   };
 
-  //   const handleClickShowPassword = () => setShowPassword(show => !show);
-
-  //   const handleMouseDownPassword = event => {
-  //     event.preventDefault();
-  //   };
-
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormTitle>Sign up</FormTitle>
-      <InputWrap>
-        <Input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-          value={name}
-          required
-        />
-      </InputWrap>
-      <InputWrap>
-        <Input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={email}
-          required
-        />
-      </InputWrap>
-      <InputWrap>
-        <Input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={password}
-          required
-        />
-      </InputWrap>
+    <Wrap>
+      <form onSubmit={handleSubmit}>
+        <TitleH1>Register</TitleH1>
+        <InputWrap>
+          <Label htmlFor={nameInputId}>Name</Label>
+          <Input
+            type="text"
+            name="name"
+            id={nameInputId}
+            // placeholder="Name"
+            onChange={handleChange}
+            value={name}
+            required
+          />
+        </InputWrap>
+        <InputWrap>
+          <Label htmlFor={emailInputId}>Email</Label>
+          <Input
+            type="email"
+            name="email"
+            id={emailInputId}
+            // placeholder="Email"
+            onChange={handleChange}
+            value={email}
+            required
+          />
+        </InputWrap>
+        <InputWrap>
+          <Label htmlFor={passwordInputId}>Password</Label>
+          <Input
+            type="password"
+            name="password"
+            id={passwordInputId}
+            // placeholder="Password"
+            onChange={handleChange}
+            value={password}
+            required
+          />
+        </InputWrap>
 
-      <FormBtn type="submit" disabled={!name || !email || !password}>
-        Sign up (Register)
-      </FormBtn>
+        <FormBtn type="submit" disabled={!name || !email || !password}>
+          Sign up
+        </FormBtn>
 
-      <div>
-        <Link to="/login">Sign in (Вже маєте аккаунт? Увійти)</Link>
-      </div>
-    </Form>
+        <FormLink to="/login">Already have an account? Sign in</FormLink>
+      </form>
+    </Wrap>
   );
 };
 

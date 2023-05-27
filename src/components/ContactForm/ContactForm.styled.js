@@ -27,6 +27,7 @@ export const FormBtn = styled.button`
   display: block;
   font-size: 1em;
   padding: 10px;
+  min-width: 180px;
   margin: 0 auto 20px auto;
   border-radius: 8px;
   border: 1px solid #59b969;

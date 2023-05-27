@@ -1,15 +1,16 @@
-// import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
-import { Link } from 'react-router-dom';
-
-import { Form, FormTitle } from '../RegisterForm/RegisterForm.styled';
 import {
   FormBtn,
   Input,
   InputWrap,
+  Label,
 } from 'components/ContactForm/ContactForm.styled';
+import Wrap from 'components/Wrap/Wrap';
+import { TitleH1 } from 'components/Wrap/Wrap.styled';
+import { nanoid } from '@reduxjs/toolkit';
+import { FormLink } from 'components/RegisterForm/RegisterForm.styled';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +18,9 @@ const LoginForm = () => {
   //   const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
+
+  const emailInputId = nanoid();
+  const passwordInputId = nanoid();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -53,36 +57,40 @@ const LoginForm = () => {
   //     event.preventDefault();
   //   };
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormTitle>Login form</FormTitle>
+    <Wrap>
+      <form onSubmit={handleSubmit}>
+        <TitleH1>Login form</TitleH1>
+        <InputWrap>
+          <Label htmlFor={emailInputId}>Email</Label>
+          <Input
+            type="email"
+            name="email"
+            id={emailInputId}
+            // placeholder="Email"
+            onChange={handleChange}
+            value={email}
+            required
+          />
+        </InputWrap>
+        <InputWrap>
+          <Label htmlFor={passwordInputId}>Password</Label>
+          <Input
+            type="password"
+            name="password"
+            id={passwordInputId}
+            // placeholder="Password"
+            onChange={handleChange}
+            value={password}
+            required
+          />
+        </InputWrap>
+        <FormBtn type="submit" disabled={!email || !password}>
+          Login
+        </FormBtn>
 
-      <InputWrap>
-        <Input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={email}
-          required
-        />
-      </InputWrap>
-      <InputWrap>
-        <Input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={password}
-          required
-        />
-      </InputWrap>
-      <FormBtn type="submit" variant="contained">
-        Login
-      </FormBtn>
-      <div>
-        <Link to="/register">Sign up (зареєструватися)</Link>
-      </div>
-    </Form>
+        <FormLink to="/register">Don't have an account? Sign up</FormLink>
+      </form>
+    </Wrap>
   );
 };
 
