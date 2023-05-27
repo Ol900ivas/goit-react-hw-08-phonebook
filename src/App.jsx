@@ -9,13 +9,14 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 import { useDispatch } from 'react-redux';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts/contactsOperations';
+// import { fetchContacts } from 'redux/contacts/contactsOperations';
 // import { selectError, selectIsLoading } from 'redux/contacts/contactsSelectors';
 // import { Toaster } from 'react-hot-toast';
 import { useAuth } from 'redux/auth/authSelectors';
 import Loader from 'components/Loader/Loader';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
+import { refreshUser } from 'redux/auth/authOperations';
 // import RegisterPage from 'pages/RegisterPage';
 // import LoginPage from 'pages/LoginPage';
 
@@ -31,8 +32,12 @@ export const App = () => {
   // const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
 
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return isRefreshing ? (

@@ -61,12 +61,6 @@ const RegisterForm = () => {
   //   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <h1>Register form</h1>
-    //   </form>
-    //   <Button type="submit" variant="contained">
-    //       Register
-    //     </Button>
     <Form onSubmit={handleSubmit}>
       <FormTitle>Sign up</FormTitle>
       <InputWrap>
@@ -100,12 +94,13 @@ const RegisterForm = () => {
         />
       </InputWrap>
 
-      <div>
-        <Link to="/login">Sign in (Вже маєте аккаунт? Увійти)</Link>
-      </div>
       <FormBtn type="submit" disabled={!name || !email || !password}>
         Sign up (Register)
       </FormBtn>
+
+      <div>
+        <Link to="/login">Sign in (Вже маєте аккаунт? Увійти)</Link>
+      </div>
     </Form>
   );
 };

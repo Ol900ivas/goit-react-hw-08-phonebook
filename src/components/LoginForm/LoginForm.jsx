@@ -1,16 +1,15 @@
-import * as React from 'react';
-
+// import * as React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authOperations';
 import { Link } from 'react-router-dom';
+
 import { Form, FormTitle } from '../RegisterForm/RegisterForm.styled';
 import {
   FormBtn,
   Input,
   InputWrap,
 } from 'components/ContactForm/ContactForm.styled';
-// import { login } from 'services/auth';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/authOperations';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -77,13 +76,12 @@ const LoginForm = () => {
           required
         />
       </InputWrap>
-
-      <div>
-        <Link to="/register">Sign up (зареєструватися)</Link>
-      </div>
       <FormBtn type="submit" variant="contained">
         Login
       </FormBtn>
+      <div>
+        <Link to="/register">Sign up (зареєструватися)</Link>
+      </div>
     </Form>
   );
 };

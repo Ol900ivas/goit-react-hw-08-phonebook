@@ -3,6 +3,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { addContact } from 'redux/contacts/contactsOperations';
 import { useState } from 'react';
 import { InputWrap, Label, Input, FormBtn } from './ContactForm.styled';
+import { toast } from 'react-hot-toast';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -40,9 +41,10 @@ const ContactForm = () => {
         contact.name.toLowerCase() === form.elements.name.value.toLowerCase()
     );
     if (nameIncludes) {
-      return alert(`${form.elements.name.value} is already in contacts`);
+      return toast.error(`${form.elements.name.value} is already in contacts`);
     }
-    dispatch(addContact({ name, phone: number }));
+
+    dispatch(addContact({ name: name, number: number }));
     reset();
     form.reset();
   };
